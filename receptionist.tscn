@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bmvft3kj05ikw"]
+
+[ext_resource type="PackedScene" uid="uid://cyb4dnw1xg6nx" path="res://assets/stickman_rig_animated_2_mixamos_idle_anim/scene.gltf" id="1_v5xm4"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Sketchfab_Scene" parent="." instance=ExtResource("1_v5xm4")]

@@ -1,0 +1,11 @@
+[
+	{"name": "Receptionist", "text": "Welcome to Super Normal Doctor's Office!"},	
+	{"name": "Player", "text": "Hello! Pretty sure I'm about to die, can I see a doctor?"},
+	{"name": "Receptionist", "text": "Yeah of course, that'll be a million dollars"},
+	{"name": "Player", "text": "...waaaa"},
+	{"name": "Player", "text": "...why?"},
+	{"name": "Player", "text": "..."},
+	{"name": "Receptionist", "text": "Oh sorry are you Canadian?"},	
+	{"name": "Player", "text": "yeah..."},
+	{"name": "Receptionist", "text": "Oh okay then just wait over here for 6 hours, then you can see a doctor"},	
+]

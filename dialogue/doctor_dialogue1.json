@@ -1,0 +1,8 @@
+[
+	{"name": "Doctor Mario", "text": "Hello! What can I help you with today?!"},	
+	{"name": "Player", "text": "Hello! I'm not sure...everything feels wrong"},
+	{"name": "Doctor Mario", "text": "Mama mia, don't worry we have a pill for that, try this!"},
+	{"name": "Player", "text": "oh wow! I can hear again! Before when I would walk around, there was no sound"},
+	{"name": "Doctor Mario", "text": "Okay great! Well do you like it? If not there's another pill to cancel that one"},	
+	{"name": "Player", "text": "yeah..."}
+]

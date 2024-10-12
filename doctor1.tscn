@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bc84fslvo4k7g"]
+
+[ext_resource type="PackedScene" uid="uid://c0fyiyfvsxols" path="res://receptionist_raw.tscn" id="1_1ndml"]
+[ext_resource type="PackedScene" uid="uid://dq25jvdd6kym3" path="res://doctor_1_dialogue.tscn" id="2_4ugne"]
+
+[node name="doctor1" type="Node3D"]
+
+[node name="Sketchfab_Scene" parent="." instance=ExtResource("1_1ndml")]
+
+[node name="Doctor1Dialogue" parent="." instance=ExtResource("2_4ugne")]

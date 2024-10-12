@@ -1,0 +1,11 @@
+Model Information:
+* title:	Stickman Rig Animated 2 (MIXAMO's "Idle" Anim)
+* source:	https://sketchfab.com/3d-models/stickman-rig-animated-2-mixamos-idle-anim-d9d509bda3ef40c9b1cfc2b7fb4be81d
+* author:	Robloxian Costa (https://sketchfab.com/costarobloxian)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Stickman Rig Animated 2 (MIXAMO's "Idle" Anim)" (https://sketchfab.com/3d-models/stickman-rig-animated-2-mixamos-idle-anim-d9d509bda3ef40c9b1cfc2b7fb4be81d) by Robloxian Costa (https://sketchfab.com/costarobloxian) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

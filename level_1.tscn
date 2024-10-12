@@ -1,0 +1,145 @@
+[gd_scene load_steps=14 format=3 uid="uid://dru60kpstsqwb"]
+
+[ext_resource type="PackedScene" uid="uid://br01chminlckq" path="res://player.tscn" id="1_egysl"]
+[ext_resource type="Script" path="res://CollisionShape3D.gd" id="9_i2c6m"]
+[ext_resource type="PackedScene" uid="uid://bsm7ebc78rp6f" path="res://level_1_platform.tscn" id="9_wcvp6"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lktsm"]
+size = Vector3(48.2826, 1, 72.301)
+
+[sub_resource type="GDScript" id="GDScript_rukeu"]
+script/source = "extends Area3D
+
+#$\"../player\"
+# Called when the node enters the scene tree for the first time.
+func _ready():
+		var invis_floor = get_node(\"../InvisibleFloorStaticBody3D/CollisionShape3D\")		
+		invis_floor.disabled = true 
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):	
+	if has_overlapping_bodies():
+		print(\"has overlapping bodies\")
+		var player = get_node(\"../player\")
+		var position = player.position
+		print(player.position)
+		var new_position = Vector3(position.x, 3, position.z)
+		player.position = new_position
+		print(player.position)
+		var invis_floor = get_node(\"../InvisibleFloorStaticBody3D/CollisionShape3D\")		
+		invis_floor.disabled = false   # enable
+		#$Player.global_position
+		#get_tree().change_scene_to_file(\"res://level_1.5.tscn\")
+"
+
+[sub_resource type="BoxMesh" id="BoxMesh_rtms5"]
+size = Vector3(50, 3, 50)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_t8j4e"]
+size = Vector3(50, 3, 50)
+
+[sub_resource type="GDScript" id="GDScript_ujcnl"]
+script/source = "extends CollisionShape3D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
+
+[sub_resource type="GDScript" id="GDScript_4x0ig"]
+script/source = "extends Area3D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
+
+[sub_resource type="BoxMesh" id="BoxMesh_5i256"]
+size = Vector3(3, 3, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_v6dmi"]
+size = Vector3(3, 3, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_fa41f"]
+size = Vector3(50, 1, 50)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_m1h5h"]
+size = Vector3(50, 1, 50)
+
+[node name="level_1" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.945433, 0.325816, 0, -0.325816, 0.945433, 0, 8.28375, 0)
+
+[node name="player" parent="." instance=ExtResource("1_egysl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -17.8019)
+
+[node name="Camera" type="Camera3D" parent="player"]
+transform = Transform3D(0.999957, 2.99752e-05, -0.00928451, 0, 0.999995, 0.00322851, 0.00928456, -0.00322837, 0.999952, -0.0689928, 0.029552, -0.276869)
+current = true
+fov = 85.0
+
+[node name="respawn collision" type="Area3D" parent="."]
+transform = Transform3D(-0.999957, -2.9975e-05, 0.00928442, 0, 0.999995, 0.00322851, -0.00928447, 0.00322837, -0.999952, 0.0372552, 7.18482, -12.3081)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="respawn collision"]
+transform = Transform3D(10.5247, 1.27329e-11, -3.72529e-09, 2.91038e-11, 0.988295, 5.58794e-09, 2.23517e-08, -2.32831e-09, 4.30843, -2.98023e-08, -14.4009, -4.76837e-07)
+shape = SubResource("BoxShape3D_lktsm")
+
+[node name="FallAreaArea3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -55, -32)
+visible = false
+script = SubResource("GDScript_rukeu")
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="FallAreaArea3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.57831, 0)
+mesh = SubResource("BoxMesh_rtms5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FallAreaArea3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.304932, -3.64337, 0.15686)
+shape = SubResource("BoxShape3D_t8j4e")
+script = SubResource("GDScript_ujcnl")
+
+[node name="ToLevel2Area3D2" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -47)
+script = SubResource("GDScript_4x0ig")
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ToLevel2Area3D2"]
+mesh = SubResource("BoxMesh_5i256")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ToLevel2Area3D2"]
+shape = SubResource("BoxShape3D_v6dmi")
+script = ExtResource("9_i2c6m")
+
+[node name="Level1PlatformNode3D" parent="." instance=ExtResource("9_wcvp6")]
+
+[node name="InvisibleFloorStaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, -29.486)
+visible = false
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="InvisibleFloorStaticBody3D"]
+mesh = SubResource("BoxMesh_fa41f")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InvisibleFloorStaticBody3D"]
+shape = SubResource("BoxShape3D_m1h5h")
+
+[connection signal="body_entered" from="respawn collision" to="player" method="_on_area_3d_body_entered"]
+[connection signal="body_entered" from="FallAreaArea3D" to="player" method="_on_fall_area_area_3d_body_entered"]
+[connection signal="area_entered" from="ToLevel2Area3D2" to="player" method="_on_to_level_2_area_3d_2_area_entered"]
+[connection signal="body_entered" from="ToLevel2Area3D2" to="player" method="_on_to_level_2_area_3d_2_body_entered"]
