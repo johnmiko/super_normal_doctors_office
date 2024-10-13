@@ -1,9 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://bc84fslvo4k7g"]
+[gd_scene load_steps=4 format=3 uid="uid://bc84fslvo4k7g"]
 
 [ext_resource type="PackedScene" uid="uid://c0fyiyfvsxols" path="res://receptionist_raw.tscn" id="1_1ndml"]
-[ext_resource type="PackedScene" uid="uid://dq25jvdd6kym3" path="res://doctor_1_dialogue.tscn" id="2_4ugne"]
+[ext_resource type="Script" path="res://doctor1.gd" id="1_52vw8"]
+[ext_resource type="PackedScene" uid="uid://brv6gde812xx" path="res://dialogue/dialogue.tscn" id="2_4ugne"]
 
 [node name="doctor1" type="Node3D"]
+script = ExtResource("1_52vw8")
 
 [node name="Sketchfab_Scene" parent="." instance=ExtResource("1_1ndml")]
 

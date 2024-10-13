@@ -13,18 +13,19 @@ func _ready():
 	$NinePatchRect.visible = false
 
 	
-func start():
+func start(dialogue_file):
+	print("starting dialogue")
+	print(dialogue_file)
 	if d_active:
 		return 
 	d_active = true
 	$NinePatchRect.visible = true
-	dialogue = load_dialogue()
+	dialogue = load_dialogue(dialogue_file)
 	current_dialogue_id = -1
 	next_script()
 	
-func load_dialogue():
-	var file = FileAccess.open("res://dialogue/worker_dialogue1.json", FileAccess.READ)
-	#var file = FileAccess.open("res://dialogue/doctor_dialogue1.json", FileAccess.READ)
+func load_dialogue(dialogue_file):
+	var file = FileAccess.open(dialogue_file, FileAccess.READ)
 	var content = JSON.parse_string(file.get_as_text())
 	return content
 

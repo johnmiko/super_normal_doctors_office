@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://br01chminlckq" path="res://player.tscn" id="2_pg1js"]
 [ext_resource type="PackedScene" uid="uid://bmvft3kj05ikw" path="res://receptionist.tscn" id="3_tw1kp"]
 [ext_resource type="Script" path="res://receptionist.gd" id="4_nss81"]
-[ext_resource type="PackedScene" uid="uid://bti22ydk0rxn5" path="res://control.tscn" id="5_x0ye0"]
+[ext_resource type="PackedScene" uid="uid://brv6gde812xx" path="res://dialogue/dialogue.tscn" id="5_x0ye0"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bkdib"]
 size = Vector3(48.2826, 1, 72.301)
@@ -97,6 +97,7 @@ mesh = SubResource("BoxMesh_vjnfi")
 skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="front_desk"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 5.68434e-14, 0, 1, -2.13279e-07, 0, 4.23744)
 shape = SubResource("BoxShape3D_8cp34")
 
 [node name="RightWallStaticBody3D" type="StaticBody3D" parent="."]

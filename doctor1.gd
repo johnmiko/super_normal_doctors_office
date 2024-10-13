@@ -15,8 +15,8 @@ func _ready():
 func _process(delta):
 	if Input.is_action_just_pressed("chat"):
 		print("chatting with npc")
-		is_chatting = true
-		$Dialogue.start("res://dialogue/reception_dialogue1.json")
+		is_chatting = true		
+		$Dialogue.start("res://dialogue/doctor_dialogue1.json")
 
 
 func _on_chat_detection_area_body_entered(body):

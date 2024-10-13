@@ -1,4 +1,4 @@
-[gd_scene load_steps=100 format=3 uid="uid://du8hi1f4x632c"]
+[gd_scene load_steps=102 format=3 uid="uid://du8hi1f4x632c"]
 
 [ext_resource type="PackedScene" uid="uid://br01chminlckq" path="res://player.tscn" id="1_1n0i3"]
 [ext_resource type="Script" path="res://addons/cyclops_level_builder/nodes/cyclops_block.gd" id="4_be7dv"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bc84fslvo4k7g" path="res://doctor1.tscn" id="7_nosl0"]
 [ext_resource type="Script" path="res://addons/cyclops_level_builder/resources/data_vector_int.gd" id="7_xgm5e"]
 [ext_resource type="Script" path="res://addons/cyclops_level_builder/resources/mesh_vector_data.gd" id="8_bmmfg"]
+[ext_resource type="PackedScene" uid="uid://brv6gde812xx" path="res://dialogue/dialogue.tscn" id="10_7skt3"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_o5ts3"]
 size = Vector3(48.2826, 1, 72.301)
@@ -928,6 +929,10 @@ face_vertex_data = {
 "vertex_index": SubResource("Resource_g64nl")
 }
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_h1tpv"]
+height = 12.9131
+radius = 9.10374
+
 [node name="Node3D" type="Node3D"]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
@@ -988,3 +993,14 @@ mesh_vector_data = SubResource("Resource_fp75h")
 
 [node name="doctor1" parent="." instance=ExtResource("7_nosl0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -19)
+
+[node name="Timer" type="Timer" parent="doctor1"]
+
+[node name="chat_detection_area" type="Area3D" parent="doctor1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="doctor1/chat_detection_area"]
+shape = SubResource("CylinderShape3D_h1tpv")
+
+[node name="Dialogue" parent="doctor1" instance=ExtResource("10_7skt3")]
+offset_right = 346.0
+offset_bottom = 268.0
