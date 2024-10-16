@@ -1,29 +1,21 @@
-[gd_scene load_steps=16 format=3 uid="uid://dr6u5u8dp7764"]
+[gd_scene load_steps=14 format=3 uid="uid://dr6u5u8dp7764"]
 
 [ext_resource type="PackedScene" uid="uid://ck3weatx4ste5" path="res://static_body_3d.tscn" id="1_mlyb6"]
 [ext_resource type="PackedScene" uid="uid://br01chminlckq" path="res://player.tscn" id="2_pg1js"]
 [ext_resource type="PackedScene" uid="uid://bmvft3kj05ikw" path="res://receptionist.tscn" id="3_tw1kp"]
 [ext_resource type="Script" path="res://receptionist.gd" id="4_nss81"]
 [ext_resource type="PackedScene" uid="uid://brv6gde812xx" path="res://dialogue/dialogue.tscn" id="5_x0ye0"]
+[ext_resource type="PackedScene" uid="uid://ylveswy75snr" path="res://assets/VNB Low Poly Office Set Updated/FBX/Separated/Chair_B.fbx" id="6_qv2k8"]
+[ext_resource type="PackedScene" uid="uid://cf3agbcxiwo6w" path="res://assets/VNB Low Poly Office Set Updated/FBX/Separated/Door_A.fbx" id="7_1a3f0"]
+[ext_resource type="PackedScene" uid="uid://rtvijb3maqdb" path="res://assets/VNB Low Poly Office Set Updated/FBX/Separated/Office_Desk_1.fbx" id="8_j2wwv"]
+[ext_resource type="PackedScene" uid="uid://b3b153cqmt3sr" path="res://assets/VNB Low Poly Office Set Updated/FBX/Separated/Office_Desk_4_Rounded.fbx" id="9_gfxmx"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_aktj1"]
+height = 12.9131
+radius = 9.10374
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bkdib"]
 size = Vector3(48.2826, 1, 72.301)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i12e4"]
-albedo_color = Color(0.690196, 0.00784314, 0.0980392, 1)
-roughness = 0.0
-
-[sub_resource type="BoxMesh" id="BoxMesh_oo30v"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_4axlc"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ulkry"]
-albedo_color = Color(0.690196, 0.00784314, 0.0980392, 1)
-roughness = 0.0
-
-[sub_resource type="BoxMesh" id="BoxMesh_vjnfi"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_8cp34"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_3bd2f"]
 size = Vector3(1, 10, 15)
@@ -31,14 +23,25 @@ size = Vector3(1, 10, 15)
 [sub_resource type="BoxMesh" id="BoxMesh_mchv3"]
 size = Vector3(1, 10, 15)
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_aktj1"]
-height = 12.9131
-radius = 9.10374
-
 [node name="Node3D" type="Node3D"]
 
+[node name="receptionist" parent="." instance=ExtResource("3_tw1kp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
+script = ExtResource("4_nss81")
+
+[node name="Timer" type="Timer" parent="receptionist"]
+
+[node name="chat_detection_area" type="Area3D" parent="receptionist"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="receptionist/chat_detection_area"]
+shape = SubResource("CylinderShape3D_aktj1")
+
+[node name="Dialogue" parent="receptionist" instance=ExtResource("5_x0ye0")]
+offset_right = 346.0
+offset_bottom = 268.0
+
 [node name="player" parent="." instance=ExtResource("2_pg1js")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.400116, 1.1981)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1.198)
 
 [node name="Camera" type="Camera3D" parent="player"]
 transform = Transform3D(0.999957, 2.99752e-05, -0.00928451, 0, 0.999995, 0.00322851, 0.00928456, -0.00322837, 0.999952, -0.0689928, 0.029552, -0.276869)
@@ -46,14 +49,10 @@ current = true
 fov = 85.0
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.945433, 0.325816, 0, -0.325816, 0.945433, 0, 7.88363, 14.2302)
+transform = Transform3D(1, 0, 0, 0, 0.945433, 0.325816, 0, -0.325816, 0.945433, 0, 4.88363, 0.2302)
 
 [node name="ground" parent="." instance=ExtResource("1_mlyb6")]
-transform = Transform3D(0.340957, 0, 0, 0, 6.72869, -0.0126542, 0, 0.0896072, 0.950214, -0.036, -1, 0.029)
-
-[node name="roof" parent="ground" instance=ExtResource("1_mlyb6")]
-transform = Transform3D(0.890385, 0, 0, 0, 2.68083, 0.00185226, 0, -0.252808, 0.984911, 1.47819, 0.898324, -0.115233)
-visible = false
+transform = Transform3D(0.340957, 0, 0, 0, 6.72869, -0.0126542, 0, 0.0896072, 0.950214, -0.036, 0, 0.029)
 
 [node name="respawn collision" type="Area3D" parent="."]
 transform = Transform3D(-0.999957, -2.9975e-05, 0.00928442, 0, 0.999995, 0.00322851, -0.00928447, 0.00322837, -0.999952, 0.0372552, 3.18482, 3.69186)
@@ -61,44 +60,6 @@ transform = Transform3D(-0.999957, -2.9975e-05, 0.00928442, 0, 0.999995, 0.00322
 [node name="CollisionShape3D" type="CollisionShape3D" parent="respawn collision"]
 transform = Transform3D(10.5247, 1.27329e-11, -3.72529e-09, 2.91038e-11, 0.988295, 5.58794e-09, 2.23517e-08, -2.32831e-09, 4.30843, -2.98023e-08, -14.4009, -4.76837e-07)
 shape = SubResource("BoxShape3D_bkdib")
-
-[node name="column" type="StaticBody3D" parent="."]
-transform = Transform3D(-1.62691, 0, -1.48395e-07, 0, 12.8697, 0, 1.42229e-07, 0, -1.69744, 4.308, -2.024, 5)
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="column"]
-transform = Transform3D(1, 0, 2.13163e-14, 0, 0.608838, 0, 2.84217e-14, 0, 1, 0, 0.232026, 1.09015)
-material_override = SubResource("StandardMaterial3D_i12e4")
-mesh = SubResource("BoxMesh_oo30v")
-skeleton = NodePath("")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="column"]
-transform = Transform3D(1, 0, 7.10543e-15, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-shape = SubResource("BoxShape3D_4axlc")
-
-[node name="column2" type="StaticBody3D" parent="."]
-transform = Transform3D(-1.62691, 0, -1.48395e-07, 0, 12.8697, 0, 1.42229e-07, 0, -1.69744, -3.056, -2.024, 11.5417)
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="column2"]
-transform = Transform3D(1, 0, 2.13163e-14, 0, 0.608838, 0, 2.84217e-14, 0, 1, 0, 0.272287, 5)
-material_override = SubResource("StandardMaterial3D_ulkry")
-mesh = SubResource("BoxMesh_vjnfi")
-skeleton = NodePath("")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="column2"]
-shape = SubResource("BoxShape3D_8cp34")
-
-[node name="front_desk" type="StaticBody3D" parent="."]
-transform = Transform3D(-3, 0, -1.50996e-07, 0, 2, 0, 4.52987e-07, 0, -1, 0, -0.486572, -0.885681)
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="front_desk"]
-transform = Transform3D(1, 0, 2.4869e-14, 0, 0.608838, 0, 8.52651e-14, 0, 1, -2.1634e-07, 0.127707, 4.29827)
-material_override = SubResource("StandardMaterial3D_ulkry")
-mesh = SubResource("BoxMesh_vjnfi")
-skeleton = NodePath("")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="front_desk"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 5.68434e-14, 0, 1, -2.13279e-07, 0, 4.23744)
-shape = SubResource("BoxShape3D_8cp34")
 
 [node name="RightWallStaticBody3D" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 0)
@@ -128,24 +89,36 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -9.418
 shape = SubResource("BoxShape3D_3bd2f")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="RightWallStaticBody3D3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.3802, 0, 9.65894)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.3802, 0, 8.65894)
 mesh = SubResource("BoxMesh_mchv3")
 skeleton = NodePath("../../RightWallStaticBody3D2")
 
-[node name="receptionist" parent="." instance=ExtResource("3_tw1kp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.544067, -6)
-script = ExtResource("4_nss81")
+[node name="RightWallStaticBody3D4" type="StaticBody3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -9.41837, 0, -16.041)
 
-[node name="Timer" type="Timer" parent="receptionist"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RightWallStaticBody3D4"]
+shape = SubResource("BoxShape3D_3bd2f")
 
-[node name="chat_detection_area" type="Area3D" parent="receptionist"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RightWallStaticBody3D4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.3802, 0, 8.65894)
+mesh = SubResource("BoxMesh_mchv3")
+skeleton = NodePath("../../RightWallStaticBody3D2")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="receptionist/chat_detection_area"]
-shape = SubResource("CylinderShape3D_aktj1")
+[node name="ChairB" parent="." instance=ExtResource("6_qv2k8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6.08618)
 
-[node name="Dialogue" parent="receptionist" instance=ExtResource("5_x0ye0")]
-offset_right = 346.0
-offset_bottom = 268.0
+[node name="Door" parent="." instance=ExtResource("7_1a3f0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.31012, 0, -5.85132)
+
+[node name="Root Scene" parent="." instance=ExtResource("8_j2wwv")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.12344, 0, -3.96838)
+
+[node name="OfficeDesk4Rounded" parent="." instance=ExtResource("9_gfxmx")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.610901, 0, -3.64294)
+
+[node name="roof" parent="." instance=ExtResource("1_mlyb6")]
+transform = Transform3D(0.303583, 0, 0, 0, 18.0417, 2.23517e-08, 0, -2.98023e-08, 0.936042, 0.467999, 5.046, 2.90573e-07)
+visible = false
 
 [connection signal="timeout" from="receptionist/Timer" to="receptionist" method="_on_timer_timeout"]
 [connection signal="body_entered" from="receptionist/chat_detection_area" to="receptionist" method="_on_chat_detection_area_body_entered"]

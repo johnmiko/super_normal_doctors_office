@@ -1,0 +1,130 @@
+[gd_scene load_steps=14 format=3 uid="uid://dv3jiqp73ykj8"]
+
+[ext_resource type="Script" path="res://level_3.gd" id="1_caojw"]
+[ext_resource type="PackedScene" uid="uid://br01chminlckq" path="res://player.tscn" id="1_wp2cy"]
+[ext_resource type="PackedScene" uid="uid://ce35k0l1vcjx4" path="res://assets/VNB Low Poly Office Set Updated/FBX/Separated/Door_Frame.fbx" id="2_dd06x"]
+[ext_resource type="PackedScene" uid="uid://bdv311s0klbme" path="res://stairs.tscn" id="3_1yreg"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_gxt3p"]
+flip_faces = true
+size = Vector3(50, 20, 50)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_r75nh"]
+size = Vector3(50, 1, 50)
+
+[sub_resource type="BoxMesh" id="BoxMesh_cno8a"]
+size = Vector3(5, 5, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_km682"]
+size = Vector3(5, 5, 2)
+
+[sub_resource type="GDScript" id="GDScript_a7rvm"]
+script/source = "extends Node3D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
+
+[sub_resource type="BoxMesh" id="BoxMesh_hv8bk"]
+size = Vector3(2, 2, 5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_klvxj"]
+size = Vector3(2, 2, 5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_0d888"]
+size = Vector3(8, 2, 5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3j5qx"]
+size = Vector3(8, 2, 5)
+
+[node name="Level3" type="Node3D"]
+script = ExtResource("1_caojw")
+
+[node name="player" parent="." instance=ExtResource("1_wp2cy")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.15, 1, 23.665)
+
+[node name="Camera" type="Camera3D" parent="player"]
+transform = Transform3D(0.999957, 2.99752e-05, -0.00928451, 0, 0.999995, 0.00322851, 0.00928456, -0.00322837, 0.999952, -0.0689928, 0.029552, -0.276869)
+current = true
+fov = 85.0
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.945433, 0.325816, 0, -0.325816, 0.945433, -0.00695801, 4.87704, 0.242529)
+
+[node name="Room" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0783691, 9.99994, 0.104492)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room"]
+mesh = SubResource("BoxMesh_gxt3p")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10, 0)
+shape = SubResource("BoxShape3D_r75nh")
+
+[node name="Door Frame" parent="." instance=ExtResource("2_dd06x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.003, 10, -24.5)
+
+[node name="StairGroup1" type="Node3D" parent="."]
+
+[node name="Stairs" parent="StairGroup1" instance=ExtResource("3_1yreg")]
+transform = Transform3D(-2.18557e-07, 0, -5, 0, 5, 0, 5, 0, -2.18557e-07, -10, 0, -23)
+
+[node name="SquareBlock5x5x2" type="StaticBody3D" parent="StairGroup1/Stairs"]
+transform = Transform3D(-8.74228e-09, 0, 0.2, 0, 0.2, 0, -0.2, 0, -8.74228e-09, -0.2, 0.5, 8.74228e-09)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StairGroup1/Stairs/SquareBlock5x5x2"]
+mesh = SubResource("BoxMesh_cno8a")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StairGroup1/Stairs/SquareBlock5x5x2"]
+shape = SubResource("BoxShape3D_km682")
+
+[node name="Stairs3" parent="StairGroup1/Stairs" instance=ExtResource("3_1yreg")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1, 1, 0.1)
+script = SubResource("GDScript_a7rvm")
+
+[node name="SquareBlock5x2x2Num1" type="StaticBody3D" parent="StairGroup1/Stairs"]
+transform = Transform3D(0.2, 0, -8.88178e-16, 0, 0.2, 0, 8.88178e-16, 0, 0.2, 1.191, 1.794, 0.104858)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StairGroup1/Stairs/SquareBlock5x2x2Num1"]
+mesh = SubResource("BoxMesh_hv8bk")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StairGroup1/Stairs/SquareBlock5x2x2Num1"]
+shape = SubResource("BoxShape3D_klvxj")
+
+[node name="SquareBlock5x2x2Num2" type="StaticBody3D" parent="StairGroup1/Stairs"]
+transform = Transform3D(0.2, 0, -8.88178e-16, 0, 0.2, 0, 8.88178e-16, 0, 0.2, 1.191, 1.794, -0.895142)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StairGroup1/Stairs/SquareBlock5x2x2Num2"]
+mesh = SubResource("BoxMesh_hv8bk")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StairGroup1/Stairs/SquareBlock5x2x2Num2"]
+shape = SubResource("BoxShape3D_klvxj")
+
+[node name="SquareBlock5x2x2Num3" type="StaticBody3D" parent="StairGroup1/Stairs"]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0.502452, 1.794, -1.20015)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StairGroup1/Stairs/SquareBlock5x2x2Num3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.04915, 0, 0.158569)
+mesh = SubResource("BoxMesh_0d888")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StairGroup1/Stairs/SquareBlock5x2x2Num3"]
+shape = SubResource("BoxShape3D_3j5qx")
+
+[node name="Stairs2" parent="StairGroup1" instance=ExtResource("3_1yreg")]
+transform = Transform3D(-2.18557e-07, 0, -5, 0, 5, 0, 5, 0, -2.18557e-07, 0, 5, -23)
+
+[node name="SquareBlock5x5x3" type="StaticBody3D" parent="StairGroup1/Stairs2"]
+transform = Transform3D(-8.74228e-09, 0, 0.2, 0, 0.2, 0, -0.2, 0, -8.74228e-09, -0.2, 0.5, 8.74228e-09)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StairGroup1/Stairs2/SquareBlock5x5x3"]
+mesh = SubResource("BoxMesh_cno8a")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StairGroup1/Stairs2/SquareBlock5x5x3"]
+shape = SubResource("BoxShape3D_km682")
